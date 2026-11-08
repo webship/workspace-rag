@@ -1,4 +1,4 @@
-# @webship/workspace-rag
+# @webship.co/workspace-rag
 
 The **RAG** workspace of the [Webship Workspace](https://github.com/webship/workspace) dashboard:
 the `rag/` folder (type `sites`), its settings file (`core/config/workspace.rag.settings.yml`),
