@@ -1,7 +1,7 @@
 {
   "name": "@webship.co/workspace-rag",
   "version": "1.0.0-alpha1",
-  "description": "The RAG workspace for Webship Workspace: the `rag/` folder (type sites), its settings file, its 5 commands and its docs, activated as a plugin.",
+  "description": "The RAG workspace for Webship Workspace: the `rag/` folder (type sites), its settings file, its 0 commands and its docs, activated as a plugin.",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "license": "ISC",
@@ -29,13 +29,7 @@
     "workspace": {
       "key": "rag",
       "settingsTemplate": "config/workspace.rag.settings.yml",
-      "files": [
-        "commands/cmd-milvus-backup.sh",
-        "commands/cmd-milvus-mcp.sh",
-        "commands/cmd-milvus-project.sh",
-        "commands/cmd-tools-rag.sh",
-        "commands/cmd-tools-reclaim.sh"
-      ],
+      "files": [],
       "docs": [
         "docs/AGENTS.md",
         "docs/CLAUDE.md",
