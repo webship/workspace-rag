@@ -20,6 +20,10 @@ The settings file and the docs are placed once and never overwritten: they hold 
 
 | Command |
 | --- |
-| (none) |
+| `cmd-milvus-backup.sh` |
+| `cmd-milvus-mcp.sh` |
+| `cmd-milvus-project.sh` |
+| `cmd-tools-rag.sh` |
+| `cmd-tools-reclaim.sh` |
 
 The bash functions these commands call live in the dashboard's `core/scripts/functions`.
