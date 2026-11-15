@@ -1,0 +1,61 @@
+{
+  "_from": "webship/workspace 1.0.10: core/scripts/args/*.sh and the argparse block of each command of this folder",
+  "_aiFolders": {
+    "cmd-tools-ai-items.sh": [
+      "--add",
+      "--check",
+      "--clone-to",
+      "--confirm",
+      "--fetch",
+      "--filter",
+      "--install",
+      "--list-remote",
+      "--propose",
+      "--pull",
+      "--purpose",
+      "--source",
+      "--status",
+      "--summary",
+      "--to",
+      "--update"
+    ]
+  },
+  "_workspace": [
+    "--help",
+    "--require",
+    "--activate",
+    "--install",
+    "--configure",
+    "--deactivate",
+    "--uninstall",
+    "--check",
+    "--list",
+    "--with-needs",
+    "--permission-mode"
+  ],
+  "cmd-milvus-backup.sh": [],
+  "cmd-milvus-mcp.sh": [
+    "--mcp-action"
+  ],
+  "cmd-milvus-project.sh": [
+    "--attu-version",
+    "--authorization",
+    "--force",
+    "--grpc-port",
+    "--launch",
+    "--milvus-version",
+    "--public-uri"
+  ],
+  "cmd-tools-rag.sh": [
+    "--limit",
+    "--milvus-project",
+    "--query",
+    "--rag-action"
+  ],
+  "cmd-tools-reclaim.sh": [
+    "--apply",
+    "--keep-days",
+    "--list-protected",
+    "--only"
+  ]
+}

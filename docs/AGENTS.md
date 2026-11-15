@@ -45,3 +45,13 @@ bash cmd-tools-rag.sh                                 # RAG indexes (list, searc
 
 Every one locates the workspace from its own path, so there is nothing to export and nothing to
 install. `--help` on any of them lists its arguments.
+
+## AI items for this folder
+
+The plugin of this folder (`@webship.co/workspace-rag`) places its own AI items in the AI folders of the
+workspace, when they are active:
+
+- `rag-index-keeper` (`ai-agents/`): Runs the Milvus instance of `rag/` and works with the project indexes in it: list, describe, search, bind, back up, make it known to an AI CLI; never drops an index or rebuilds an instance unasked
+- `rag-workflow` (`ai-skills/`): How work is done in `rag/`: look, build, index from the project's folder, search, back up; every command with its flags, the `milvus` and `rag` settings keys
+- `/rag-search` (`ai-commands/`): `/rag-search <workspace>/<project> <question>`: checks the index is there, searches it and answers from the passages, each with its file
+- `rag-start-and-search` (`ai-prompts/`): A new session that starts the vector database, says what is indexed and searches one project's index
