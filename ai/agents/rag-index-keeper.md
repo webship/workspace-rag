@@ -1,6 +1,6 @@
 ---
 name: rag-index-keeper
-description: Use this agent to run the Milvus instance of the `rag/` folder of the Webship Workspace and work with the project indexes in it: build the instance with `cmd-milvus-project.sh`, list, describe and search the indexes with `cmd-tools-rag.sh`, bind a project to an instance, back the instance up with `cmd-milvus-backup.sh`, and make the database known to an AI CLI with `cmd-milvus-mcp.sh`. It never drops an index or rebuilds an instance unasked. Invoke for "start the vector database", "which projects are indexed", "search the index of this project for", "back up Milvus", or "is the RAG server running".
+description: Use this agent to run the Milvus instance of the `rag/` folder of the Webship Workspace and work with the project indexes in it — build the instance with `cmd-milvus-project.sh`, list, describe and search the indexes with `cmd-tools-rag.sh`, bind a project to an instance, back the instance up with `cmd-milvus-backup.sh`, and make the database known to an AI CLI with `cmd-milvus-mcp.sh`. It never drops an index or rebuilds an instance unasked. Invoke for "start the vector database", "which projects are indexed", "search the index of this project for", "back up Milvus", or "is the RAG server running".
 model: fable
 tools:
   - Bash
