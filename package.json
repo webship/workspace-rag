@@ -1,6 +1,6 @@
 {
   "name": "@webship.co/workspace-rag",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "The RAG workspace for Webship Workspace: the `rag/` folder (type sites), its settings file, its 5 commands, its docs and its AI items (an agent, a skill, a command and a prompt, each in the folder of its kind), activated as a plugin.",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
