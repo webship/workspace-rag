@@ -2,7 +2,8 @@
 
 The **RAG** workspace of the [Webship Workspace](https://github.com/webship/workspace) dashboard:
 the `rag/` folder (type `sites`), its settings file (`core/config/workspace.rag.settings.yml`),
-its commands and its docs, as a plugin.
+its commands and its docs, as a plugin; and the index builder, `cmd-tools-ragify.sh`, placed in every
+sites and code folder so a project is indexed from its own folder.
 
 ## Use it
 
@@ -33,14 +34,47 @@ The plugin carries its own AI items (`ai/` in the package, the manifest's `ai` b
 
 From its folder an item is installed into the AI CLI (Claude Code by default) like any other: the folder's page on the dashboard, or `bash cmd-tools-ai-items.sh <name> --install` in the AI folder (`--to dev/<project>` for one project). A prompt is not installed: the New screen form lists it as the start of a new session. The body of every item is plain Markdown any AI CLI can follow; Claude Code is the default shape (the frontmatter, the launch line of a prompt). Every command, flag, settings key and path an item names is checked by `tests/items.test.ts`; the shape of the items is the one of the reference, [`docs/plugin-items-pattern.md` of the WordPress plugin](https://github.com/webship/workspace-wordpress/blob/1.0.x/docs/plugin-items-pattern.md).
 
+## Index a project
+
+`--install` also places the index builder, `cmd-tools-ragify.sh`, in every sites and code folder of the
+workspace (dev, test, products, modules, …), the way the graph plugin places its graph builder. A
+project is indexed from its own folder, into the Milvus instance of `rag/`:
+
+```bash
+cd ~/workspace/rag && bash cmd-milvus-project.sh                      # once: the vector database, as a container project
+cd ~/workspace/<workspace> && bash cmd-tools-ragify.sh <project>      # build the index, or rebuild it
+cd ~/workspace/<workspace> && bash cmd-tools-ragify.sh <project> --query "where is the front page built"
+```
+
+| Flag | What it does |
+| --- | --- |
+| `--scope` | `custom` (the project's own code), `contrib` (with the contrib modules, themes and profiles: the default) or `all` |
+| `--all` | The same as `--scope all`: nothing is left out |
+| `--exclude` | More paths to leave out, on top of the scope's |
+| `--append` | Add to the index instead of rebuilding it |
+| `--embedding` | `bm25`, matched by words inside Milvus (the default: no model, nothing leaves the machine), or `openai`, which also sends every chunk to the OpenAI API |
+| `--milvus-instance` | Index into another server of `rag/`, remembered in `rag/bindings.yml`; `default` unbinds |
+| `--query`, `--limit` | Ask the index a question instead of building it, and how many passages come back |
+
+The builder is the core's (`ragify_project`, in `core/scripts/functions/fun-ragify.sh`, with its argument
+file). What the plugin adds is `scripts/functions/fun-rag-builder.sh`, placed in
+`core/scripts/plugins/rag/functions/`: the scope a build leaves out when the graph plugin is not
+installed (the same three layers), and a record of each index it built,
+`rag/.indexes/<workspace>/<project>.json` (the collection, the server, the scope, the retrieval and
+when). The index itself is the collection in Milvus; the record is in the rag folder and never in the
+project, since a repository must not gain a file because somebody indexed it. The builder runs the
+indexer with `uv run`, so the machine that runs it needs `uv` (the dashboard's container has it).
+
 ## The commands
 
-| Command |
-| --- |
-| `cmd-milvus-backup.sh` |
-| `cmd-milvus-mcp.sh` |
-| `cmd-milvus-project.sh` |
-| `cmd-tools-rag.sh` |
-| `cmd-tools-reclaim.sh` |
+| Command | Where it lands |
+| --- | --- |
+| `cmd-milvus-backup.sh` | `rag/` |
+| `cmd-milvus-mcp.sh` | `rag/` |
+| `cmd-milvus-project.sh` | `rag/` |
+| `cmd-tools-rag.sh` | `rag/` |
+| `cmd-tools-reclaim.sh` | `rag/` |
+| `cmd-tools-ragify.sh` | every sites and code folder |
 
-The bash functions these commands call live in the dashboard's `core/scripts/functions`.
+The bash functions these commands call live in the dashboard's `core/scripts/functions`, and the
+plugin's own in `core/scripts/plugins/rag/functions/`.

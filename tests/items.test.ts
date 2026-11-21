@@ -116,7 +116,7 @@ const SHIPPED: string[] = fs.existsSync(path.join(PKG, 'commands')) ? fs.readdir
 
 test('every command an item names is one this folder ships, with the flags it is given', () => {
   assert.deepStrictEqual(Object.keys(FLAGS).filter((k) => !k.startsWith('_')).sort(), SHIPPED, 'the fixture holds every command of the folder, and no other');
-  assert.deepStrictEqual((manifest.workspace.files || []).map((f: string) => path.basename(f)).sort(), SHIPPED, 'and the manifest places every one of them');
+  assert.deepStrictEqual([...(manifest.workspace.files || []), ...((manifest.commands && manifest.commands.files) || [])].map((f: string) => path.basename(f)).sort(), SHIPPED, 'and the manifest places every one of them');
   let named = 0;
   for (const f of [...ITEM_FILES, 'README.md']) {
     for (const line of read(f).split('\n')) {

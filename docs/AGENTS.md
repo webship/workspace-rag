@@ -11,11 +11,16 @@ A Milvus instance is a DDEV project like any other — start and stop it from it
 themselves live inside Milvus, not on disk; `bindings.yml` records which instance holds which
 project's index.
 
-**Index a project from its own workspace, never from here:**
+**Index a project from its own workspace, never from here.** The RAG plugin places
+`cmd-tools-ragify.sh` in every sites and code folder:
 
 ```bash
-cd ~/workspace/dev && bash cmd-tools-ragify.sh <project>
+cd ~/workspace/dev && bash cmd-tools-ragify.sh <project>                              # build or rebuild
+cd ~/workspace/dev && bash cmd-tools-ragify.sh <project> --query "where is it configured"
 ```
+
+Each build leaves a record here, `.indexes/<workspace>/<project>.json`: the collection, the server,
+the scope, the retrieval and when. The dashboard's RAG menu reads it; the index is in Milvus.
 
 Retrieval is BM25 by default: the database builds the vectors itself, so no model runs and nothing
 leaves this machine.

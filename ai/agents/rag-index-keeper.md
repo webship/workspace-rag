@@ -28,7 +28,9 @@ Read a command before quoting a flag: `bash <command> --help` is always safe.
 A Milvus instance: a container project, `~/workspace/rag/milvus` by default, with its web UI.
 The indexes are collections inside the instance, one per project; `bindings.yml` in the folder
 records which instance holds which project's index. A project is indexed from its own folder,
-with the indexing tool of that folder, never from here.
+never from here, with the `cmd-tools-ragify.sh` the plugin places in every sites and code folder
+(`cd ~/workspace/<workspace> && bash cmd-tools-ragify.sh <project>`); each build leaves a record
+in `.indexes/` of this folder.
 
 ## Run an instance
 
