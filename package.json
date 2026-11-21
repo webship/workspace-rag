@@ -1,6 +1,6 @@
 {
   "name": "@webship.co/workspace-rag",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "The RAG workspace for Webship Workspace: the `rag/` folder (type sites), its settings file, its 5 commands, its docs and its AI items (an agent, a skill, a command and a prompt, each in the folder of its kind), activated as a plugin; the index builder `cmd-tools-ragify.sh`, placed in every sites and code folder; and the RAG menu on every project row (the index's state, build or rebuild in a screen, search, describe, remove, the RAG workspace).",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
