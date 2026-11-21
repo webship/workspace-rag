@@ -52,6 +52,16 @@
     "--query",
     "--rag-action"
   ],
+  "cmd-tools-ragify.sh": [
+    "--all",
+    "--append",
+    "--embedding",
+    "--exclude",
+    "--limit",
+    "--milvus-instance",
+    "--query",
+    "--scope"
+  ],
   "cmd-tools-reclaim.sh": [
     "--apply",
     "--keep-days",

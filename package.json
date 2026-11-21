@@ -1,7 +1,7 @@
 {
   "name": "@webship.co/workspace-rag",
   "version": "1.0.12",
-  "description": "The RAG workspace for Webship Workspace: the `rag/` folder (type sites), its settings file, its 5 commands, its docs and its AI items (an agent, a skill, a command and a prompt, each in the folder of its kind), activated as a plugin.",
+  "description": "The RAG workspace for Webship Workspace: the `rag/` folder (type sites), its settings file, its 5 commands, its docs and its AI items (an agent, a skill, a command and a prompt, each in the folder of its kind), activated as a plugin; and the index builder `cmd-tools-ragify.sh`, placed in every sites and code folder.",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "license": "ISC",
@@ -16,6 +16,7 @@
     "config",
     "docs",
     "features",
+    "scripts",
     "README.md"
   ],
   "scripts": {
@@ -33,6 +34,31 @@
       "ai-commands",
       "ai-prompts"
     ],
+    "suggests": {
+      "plugins": [
+        [
+          "dev",
+          "test",
+          "sandboxes",
+          "demos",
+          "projects",
+          "products",
+          "drupal-modules",
+          "drupal-themes",
+          "drupal-recipes",
+          "drupal-profiles",
+          "drupal-site-templates",
+          "libraries"
+        ]
+      ],
+      "commands": [
+        {
+          "command": "uv",
+          "hint": "https://docs.astral.sh/uv/getting-started/installation/",
+          "for": "cmd-tools-ragify.sh, which runs the indexer with uv run"
+        }
+      ]
+    },
     "workspace": {
       "key": "rag",
       "settingsTemplate": "config/workspace.rag.settings.yml",
@@ -65,7 +91,27 @@
     },
     "features": [
       "features/rag.feature"
-    ]
+    ],
+    "typeActions": {
+      "ragify": [
+        "sites",
+        "code"
+      ]
+    },
+    "commands": {
+      "types": [
+        "sites",
+        "code"
+      ],
+      "files": [
+        "commands/cmd-tools-ragify.sh"
+      ]
+    },
+    "scripts": {
+      "functions": [
+        "scripts/functions/fun-rag-builder.sh"
+      ]
+    }
   },
   "devDependencies": {
     "@types/node": "^24.0.0",

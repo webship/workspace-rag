@@ -14,8 +14,9 @@ RAG is the Milvus vector database, and the per-project indexes held in it: an in
 1. **Look at what runs**: `bash cmd-tools-rag.sh --rag-action status`, and
    `bash cmd-tools-rag.sh --rag-action servers`.
 2. **Build** an instance when there is none: `bash cmd-milvus-project.sh`.
-3. **Index a project from its own folder**, with that folder's indexing tool; then
-   `bash cmd-tools-rag.sh` lists it here.
+3. **Index a project from its own folder**, with the `cmd-tools-ragify.sh` the plugin places in
+   every sites and code folder: `cd ~/workspace/<workspace> && bash cmd-tools-ragify.sh <project>`;
+   then `bash cmd-tools-rag.sh` lists it here.
 4. **Search**: `bash cmd-tools-rag.sh dev/mysite --rag-action search --query "the question"`.
 5. **Back up** before a change: `bash cmd-milvus-backup.sh`. Never `--force` an instance that
    holds indexes.
@@ -34,6 +35,7 @@ RAG is the Milvus vector database, and the per-project indexes held in it: an in
 | `cmd-milvus-mcp.sh` | Makes the whole database known to the AI CLI of this machine: `--mcp-action` is `status` (the default), `register`, `unregister` or `serve` | `--mcp-action` |
 | `cmd-tools-rag.sh` | The project indexes: `[index]`, and `--rag-action` is `list` (the default), `info`, `search`, `remove`, `servers`, `bind`, `status`, `mcp-register`, `mcp-unregister` or `serve` | `--limit` `--milvus-project` `--query` `--rag-action` |
 | `cmd-tools-reclaim.sh` | Disk held by projects whose folder is gone: a dry run unless `--apply` | `--apply` `--keep-days` `--list-protected` `--only` |
+| `cmd-tools-ragify.sh` | In every sites and code folder, not here: builds or rebuilds a project's index, `<project>`; `--query` asks the index instead; each build leaves a record in `rag/.indexes/` | `--all` `--append` `--embedding` `--exclude` `--limit` `--milvus-instance` `--query` `--scope` |
 
 ## Settings
 
