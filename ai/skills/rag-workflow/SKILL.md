@@ -15,8 +15,9 @@ RAG is the Milvus vector database, and the per-project indexes held in it: an in
    `bash cmd-tools-rag.sh --rag-action servers`.
 2. **Build** an instance when there is none: `bash cmd-milvus-project.sh`.
 3. **Index a project from its own folder**, with the `cmd-tools-ragify.sh` the plugin places in
-   every sites and code folder: `cd ~/workspace/<workspace> && bash cmd-tools-ragify.sh <project>`;
-   then `bash cmd-tools-rag.sh` lists it here.
+   every sites and code folder: `cd ~/workspace/<workspace> && bash cmd-tools-ragify.sh <project>`
+   (on the dashboard, the RAG menu of the project's row does the same); then `bash cmd-tools-rag.sh`
+   lists it here.
 4. **Search**: `bash cmd-tools-rag.sh dev/mysite --rag-action search --query "the question"`.
 5. **Back up** before a change: `bash cmd-milvus-backup.sh`. Never `--force` an instance that
    holds indexes.

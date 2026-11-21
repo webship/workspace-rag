@@ -2,8 +2,8 @@
 
 The **RAG** workspace of the [Webship Workspace](https://github.com/webship/workspace) dashboard:
 the `rag/` folder (type `sites`), its settings file (`core/config/workspace.rag.settings.yml`),
-its commands and its docs, as a plugin; and the index builder, `cmd-tools-ragify.sh`, placed in every
-sites and code folder so a project is indexed from its own folder.
+its commands and its docs, as a plugin; the index builder, `cmd-tools-ragify.sh`, placed in every sites and
+code folder so a project is indexed from its own folder; and the RAG menu on every project row of those folders.
 
 ## Use it
 
@@ -64,6 +64,32 @@ installed (the same three layers), and a record of each index it built,
 when). The index itself is the collection in Milvus; the record is in the rag folder and never in the
 project, since a repository must not gain a file because somebody indexed it. The builder runs the
 indexer with `uv run`, so the machine that runs it needs `uv` (the dashboard's container has it).
+
+## The RAG menu of a project row
+
+Every project row of a folder the builder is in carries a **RAG** button, after Graph: the rows of `rag/`
+itself are its servers and carry none. Beside the button, the state of the project's index: `built 2 h ago`
+(when it was last built), `none`, or `building…` while its build runs; the button's name says it too, for a
+screen reader, and its tooltip gives the date and the server. The menu, loaded when it opens:
+
+| Entry | What it does |
+| --- | --- |
+| **Build the index** / **Rebuild the index** | Runs `cmd-tools-ragify.sh <project>` in a screen session: a notice links to it in Screens, and the row says `built just now` once it is done. Disabled, and saying why, while the server is not running |
+| **Follow the build in Screens** | In place of the one above while the build runs |
+| **Search the index…** | A dialog with a search field: the passages that match, best first, each with its file and lines (BM25, on this machine) |
+| **Describe the index** | A dialog: the collection, the server, when and at which scope it was built, how many passages, the retrieval, the fields, and the command that rebuilds it |
+| **Open the RAG workspace** | The `rag/` page, where the servers are built, started and stopped (**Start it in the RAG workspace** while the server is down) |
+| **Remove the index** | After the confirm dialog: drops the project's collection and its record; the project is untouched |
+
+The state comes from what the server says (its collections, asked once a page and kept a few seconds) and,
+until it has answered or while it is down, from the record the builder left. A record of an index the server
+no longer has is dropped when the menu opens. The dashboard reaches a server over its REST API: from its DDEV
+container by the server's container name, from a dashboard run on the machine by the port the server publishes
+there (`milvus.grpc_port`, or the one the build found free); with `milvus.authorization` on, with the token.
+
+The menu is drawn by the plugin in the dashboard's `rag` slot, which a dashboard gives the plugin once it has
+registered it (webship/workspace#570). On an older dashboard the core's own RAG menu shows in that slot, now
+that the builder is there.
 
 ## The commands
 
