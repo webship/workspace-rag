@@ -20,7 +20,8 @@ cd ~/workspace/dev && bash cmd-tools-ragify.sh <project> --query "where is it co
 ```
 
 Each build leaves a record here, `.indexes/<workspace>/<project>.json`: the collection, the server,
-the scope, the retrieval and when. The dashboard's RAG menu reads it; the index is in Milvus.
+the scope, the retrieval and when. The index is in Milvus. On the dashboard, the RAG menu of a project's
+row builds or rebuilds it (in a screen session), searches it, describes it and removes it.
 
 Retrieval is BM25 by default: the database builds the vectors itself, so no model runs and nothing
 leaves this machine.
